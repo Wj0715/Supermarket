@@ -32,6 +32,6 @@ export function bachDel(params){
 }
 
 // // 模糊查询
-// export function searchGoods(params){
-// return req.get('/goods/search',params)
-// }
+export function searchGoods(params){
+return req.get('/goods/search',params)
+}

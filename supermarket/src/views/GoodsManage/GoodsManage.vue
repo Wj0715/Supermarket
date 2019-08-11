@@ -92,9 +92,7 @@
             <el-form-item label="商品名称" prop="goodsName" label-width="120px">
               <el-input v-model="editform.goodsName" autocomplete="off"></el-input>
             </el-form-item>
-            <!-- <el-form-item label="是否促销" prop="isPromotion" label-width="120px">
-              <el-input v-model="editform.isPromotion" autocomplete="off"></el-input>
-            </el-form-item>-->
+          
             <el-form-item label="是否促销" prop="isPromotion">
               <el-radio-group v-model="editform.isPromotion">
                 <el-radio label="促销" style="margin-left:15px;">促销</el-radio>
@@ -129,7 +127,8 @@ import {
   goodsRemolve,
   goodsEdit,
   saveEdit,
-  bachDel
+  bachDel,
+  searchGoods
 } from "@/api/goods";
 export default {
   data() {
@@ -342,21 +341,21 @@ export default {
     search() {
     this.goodsData();
       // // 收集参数
-      // let params = {
-      //   classify: this.searchForm.classify,
-      //   keyWord: this.searchForm.keyWord
-      // };
-      // // 发送给后台
-      // searchGoods(params)
-      //   .then(res => {
-      //     // // 接受后台响应的参数
-      //     let { data} = res;
-      //     // 渲染
-      //     this.goodsMgForm = data;
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
+      let params = {
+        classify: this.searchForm.classify,
+        keyWord: this.searchForm.keyWord
+      };
+      // 发送给后台
+      searchGoods(params)
+        .then(res => {
+          // // 接受后台响应的参数
+          let { data} = res;
+          // 渲染
+          this.goodsMgForm = data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   created() {

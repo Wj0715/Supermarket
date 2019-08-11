@@ -145,26 +145,26 @@ router.get('/bachdel', (req, res) => {
 })
 
 // 模糊查询
-// router.get('/search', (req, res) => {
-//     // 接受参数
-//     let { classify, keyWord } = req.query;
-//     // 准备sql
-//     let sqlstr = `select * from goods where 1 = 1`;
-//     // 如果分类不等于空，并且不等于‘全部分类’
-//     if (classify !== '' && classify !== '全部分类') {
-//         // 拼接第一个查询条件
-//         sqlstr += ` and classify='${classify}'`;
-//     }
-//     // 如果第二个关键字不为空  那么拼接sql
-//     if (!keyWord == '') {
-//         sqlstr += ` and (goodsName like '%${keyWord}%' or goodsCode like '%${keyWord}%')`
-//     }
-//     console.log(sqlstr);
-//     // 执行sql
-//     conn.query(sqlstr, (err, data) => {
-//         if (err) throw err;
-//         res.send({ data })  //把查询结果响应给前端
-//     })
-// })
+router.get('/search', (req, res) => {
+    // 接受参数
+    let { classify, keyWord } = req.query;
+    // 准备sql
+    let sqlstr = `select * from goods where 1 = 1`;
+    // 如果分类不等于空，并且不等于‘全部分类’
+    if (classify !== '' && classify !== '全部分类') {
+        // 拼接第一个查询条件
+        sqlstr += ` and classify='${classify}'`;
+    }
+    // 如果第二个关键字不为空  那么拼接sql
+    if (!keyWord == '') {
+        sqlstr += ` and (goodsName like '%${keyWord}%' or goodsCode like '%${keyWord}%')`
+    }
+    console.log(sqlstr);
+    // 执行sql
+    conn.query(sqlstr, (err, data) => {
+        if (err) throw err;
+        res.send({ data })  //把查询结果响应给前端
+    })
+})
 
 module.exports = router;
